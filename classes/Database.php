@@ -5,7 +5,7 @@ class Database
 {
 
     public static $host = "127.0.0.1";
-    public static $dbName = "tin_tuc";
+    public static $dbName = "quanlynhanvien";
     public static $userName = "root";
     public static $password = "";
 

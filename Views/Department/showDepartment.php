@@ -14,6 +14,18 @@
 </head>
 <body>
 
+
+<?php
+echo '<pre>';
+print_r($Employees);
+echo '</pre>';
+
+
+echo '<pre>';
+print_r($Department);
+echo '</pre>';
+?>
+
 <div class="container">
 	<header>
 		<nav class="navbar navbar-default">
@@ -26,7 +38,9 @@
 					<li><a href="employees"> Employees </a></li>
 					<li><a href="index.php"> Departments </a></li>
             <?php
-            session_start();
+            if (session_status() == PHP_SESSION_NONE) {
+//                session_start();
+            }
             if (isset($_SESSION['employee_name'])) {
                 ?>
 							<li><a class="loginstatus" href="logout"> Logout </a></li>
@@ -49,63 +63,41 @@
 
 		<!-- Begin page content -->
 		<div class="container">
-			<h1>Departments</h1>
+			<h2>Department: <?php echo $Department[0]['name']; ?> <a href="createDepartment">
+					<a href="index.php">
+						<button class="btn btn-primary pull-right"> All Departments</button>
+					</a>
+				</a></h2>
+			<div class="employee-info">
+
+				<div>
+					<span> Name: </span> <?php echo $Department[0]['name']; ?>
+				</div>
+				<div>
+					<span> Office Number: </span> <?php echo $Department[0]['office_number']; ?>
+				</div>
+				<div>
+					<span> Members: </span>
+            <?php
+            foreach ($Employees as $ep) {
+                if ($ep['id_department'] == $Department[0]['id']) {
+                    ?>
+									<a target="_blank"
+									   href="showEmployee?id=<?php echo $ep['id']; ?>"> <?php echo $ep['name'] ?> </a> <?php
+                    if ($ep['position'] == "manager") {
+                        echo "(manager)";
+                    }
+                    ?> ,
+                    <?php
+
+                }
+            }
+            ?>
+				</div>
 
 
-			<div class="alert-success">
-          <?php
-          if (session_status() == PHP_SESSION_NONE) {
-              session_start();
-          }
-          if (!empty($_SESSION['message'])) {
-              $message = $_SESSION['message'];
-              echo $message;
-              $_SESSION['message'] = "";
-          }
-          ?>
 			</div>
 
-			<table class="table table-hover">
-				<thead>
-				<tr>
-					<th>#</th>
-					<th>Name</th>
-					<th>Office Number</th>
-					<th>Manager</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr>
-					<td>1</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				<tr>
-					<td>2</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				<tr>
-					<td>3</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-
-				<tr>
-					<td>4</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				</tbody>
-			</table>
 
 		</div>
 

@@ -1,0 +1,19 @@
+*::-moz-selection {
+    background: #de7d20 none repeat scroll 0 0;
+    color: #fff;
+}
+
+.body{
+    min-height: 100vh;
+}
+
+footer{
+    background: #ddd;
+    padding: 10px;
+}
+
+.employee-info span{
+    font-weight: bold;
+    display: inline-block;
+    width: 120px;
+}

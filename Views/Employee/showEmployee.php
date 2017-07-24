@@ -49,63 +49,33 @@
 
 		<!-- Begin page content -->
 		<div class="container">
-			<h1>Departments</h1>
+			<h2>Employee: <?php echo $Employee[0]['name']; ?> <a href="createEmployee">
+					<a href="employees">
+						<button class="btn btn-primary pull-right"> All Employee</button>
+					</a>
+				</a></h2>
+			<div class="employee-info">
 
-
-			<div class="alert-success">
-          <?php
-          if (session_status() == PHP_SESSION_NONE) {
-              session_start();
-          }
-          if (!empty($_SESSION['message'])) {
-              $message = $_SESSION['message'];
-              echo $message;
-              $_SESSION['message'] = "";
-          }
-          ?>
+				<div>
+					<span> Name: </span> <?php echo $Employee[0]['name']; ?>
+				</div>
+				<div>
+					<span> Email: </span> <?php echo $Employee[0]['email']; ?>
+				</div>
+				<div>
+					<span> Job title: </span> <?php echo $Employee[0]['job_title']; ?>
+				</div>
+				<div>
+					<span> Cellphone: </span> <?php echo $Employee[0]['cellphone']; ?>
+				</div>
+				<div>
+					<span> Department: </span> <?php echo $Employee[0]['department_name']; ?>
+				</div>
+				<div>
+					<span> Position: </span> <?php echo $Employee[0]['position']; ?>
+				</div>
 			</div>
 
-			<table class="table table-hover">
-				<thead>
-				<tr>
-					<th>#</th>
-					<th>Name</th>
-					<th>Office Number</th>
-					<th>Manager</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr>
-					<td>1</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				<tr>
-					<td>2</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				<tr>
-					<td>3</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-
-				<tr>
-					<td>4</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				</tbody>
-			</table>
 
 		</div>
 

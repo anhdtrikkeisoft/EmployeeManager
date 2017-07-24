@@ -34,8 +34,8 @@
             } else {
                 ?>
 							<li><a class="loginstatus" href="login"> Login </a></li>
-                <?php
 
+                <?php
             }
             ?>
 				</ul>
@@ -47,66 +47,35 @@
 
 	<div class="body">
 
+		<h2>Login</h2>
+
+		<div class="alert-success">
+        <?php
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (!empty($_SESSION['message'])) {
+            $message = $_SESSION['message'];
+            echo $message;
+            $_SESSION['message'] = "";
+        }
+        ?>
+		</div>
+
+
 		<!-- Begin page content -->
 		<div class="container">
-			<h1>Departments</h1>
-
-
-			<div class="alert-success">
-          <?php
-          if (session_status() == PHP_SESSION_NONE) {
-              session_start();
-          }
-          if (!empty($_SESSION['message'])) {
-              $message = $_SESSION['message'];
-              echo $message;
-              $_SESSION['message'] = "";
-          }
-          ?>
-			</div>
-
-			<table class="table table-hover">
-				<thead>
-				<tr>
-					<th>#</th>
-					<th>Name</th>
-					<th>Office Number</th>
-					<th>Manager</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr>
-					<td>1</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				<tr>
-					<td>2</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				<tr>
-					<td>3</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-
-				<tr>
-					<td>4</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				</tbody>
-			</table>
-
+			<form action="dangnhap" class="form-signin" id="UserLoginForm" method="post" accept-charset="utf-8">
+				<div style="display:none;"><input type="hidden" name="_method" value="POST"/></div>
+				<input name="email"
+				       class="form-control email"
+				       placeholder="Email" autofocus="autofocus"
+				       maxlength="30" type="email"
+				       id="email"/><input
+						name="password" class="form-control password" placeholder="Password" type="password"
+						id="UserPassword"/>
+				<div class="submit"><input class="btn btn-lg btn-primary btn-block" type="submit" value="Log in"/></div>
+			</form>
 		</div>
 
 	</div>

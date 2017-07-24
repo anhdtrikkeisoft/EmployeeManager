@@ -14,6 +14,7 @@
 </head>
 <body>
 
+
 <div class="container">
 	<header>
 		<nav class="navbar navbar-default">
@@ -49,63 +50,47 @@
 
 		<!-- Begin page content -->
 		<div class="container">
-			<h1>Departments</h1>
 
+			<div class="row">
+				<h1> Edit Employee: <?php echo $Department[0]['name']; ?> <a href="employees">
+						<button class="btn btn-primary pull-right">Back</button>
+					</a></h1>
 
-			<div class="alert-success">
-          <?php
-          if (session_status() == PHP_SESSION_NONE) {
-              session_start();
-          }
-          if (!empty($_SESSION['message'])) {
-              $message = $_SESSION['message'];
-              echo $message;
-              $_SESSION['message'] = "";
-          }
-          ?>
+				<div>
+					<form action="updateDepartment" method="post">
+
+						<input type="hidden" name="id" value="<?php echo $Department[0]['id'] ?>">
+
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12">
+								<div class="form-group">
+									<strong>Name:</strong>
+									<input value="<?php echo $Department[0]['name']; ?>" placeholder="Enter Name" class="form-control" name="name" type="text">
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-sm-12 col-md-12">
+								<div class="form-group">
+									<strong>Office number:</strong>
+									<input placeholder="Enter office number" class="form-control" name="office_number" type="text"
+									       value="<?php echo $Department[0]['office_number']; ?>">
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-sm-12 col-md-12">
+								<div class="form-group">
+
+									<input placeholder="Enter Email" class="btn btn-success form-control" type="submit"
+									       value="Save">
+
+								</div>
+							</div>
+
+						</div>
+
+					</form>
+				</div>
 			</div>
-
-			<table class="table table-hover">
-				<thead>
-				<tr>
-					<th>#</th>
-					<th>Name</th>
-					<th>Office Number</th>
-					<th>Manager</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr>
-					<td>1</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				<tr>
-					<td>2</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				<tr>
-					<td>3</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-
-				<tr>
-					<td>4</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-
-				</tbody>
-			</table>
 
 		</div>
 

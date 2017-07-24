@@ -11,8 +11,22 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="public/bootstrap/js/bootstrap.js"></script>
+	<script src="public/js/tuananh.js"></script>
 </head>
 <body>
+<?php
+//
+//echo '<pre>';
+//print_r($Departments);
+//echo '</pre>';
+//
+//
+//echo '<pre>';
+//print_r($Managers);
+//echo '</pre>';
+//
+//?>
+
 
 <div class="container">
 	<header>
@@ -35,7 +49,6 @@
                 ?>
 							<li><a class="loginstatus" href="login"> Login </a></li>
                 <?php
-
             }
             ?>
 				</ul>
@@ -49,8 +62,9 @@
 
 		<!-- Begin page content -->
 		<div class="container">
-			<h1>Departments</h1>
-
+			<h2>Departmentss<a href="createDepartment">
+					<button class="btn btn-primary pull-right btn-create"> Create Department</button>
+				</a></h2>
 
 			<div class="alert-success">
           <?php
@@ -71,38 +85,54 @@
 					<th>#</th>
 					<th>Name</th>
 					<th>Office Number</th>
-					<th>Manager</th>
+					<th> Manager</th>
+					<th>Action</th>
 				</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td>1</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
+        <?php
+        $i = 1;
+        foreach ($Departments as $dp) { ?>
 
-				<tr>
-					<td>2</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
+					<tr>
+						<th> <?php echo $i; ?> </th>
+						<th> <?php echo $dp['name']; ?> </th>
+						<th> <?php echo $dp['office_number']; ?> </th>
+						<th>
 
-				<tr>
-					<td>3</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
+                <?php
+                foreach ($Managers as $mn) {
+                    if($mn['id_department'] == $dp['id']){?>
+											<a target="_blank" href="showEmployee?id=<?php echo $mn['id'] ?>"> <?php echo $mn['name'] ?> </a>
+                        <?php
 
+                    }
+                }
+                ?>
 
-				<tr>
-					<td>4</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
+						</th>
+						<th>
+							<a href="showDepartment?id=<?php echo $dp['id']; ?>">
+								<button class="btn btn-info"> View</button>
+							</a>
+							<a href="editDepartment?id=<?php echo $dp['id'] ?>">
+								<button class="btn btn-success"> Edit</button>
+							</a>
+
+							<form method="POST" action="deleteDepartment" accept-charset="UTF-8"
+							      style="display:inline">
+								<input name="_method" type="hidden" value="DELETE">
+								<input type="hidden" name="id" value="<?php echo $dp['id']; ?>">
+								<input class="btn btn-danger" type="submit" value="Delete">
+							</form>
+
+						</th>
+					</tr>
+            <?php
+            $i++;
+        }
+        ?>
+
 
 				</tbody>
 			</table>

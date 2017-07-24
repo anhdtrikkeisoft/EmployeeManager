@@ -3,7 +3,6 @@
     <a href="createUser"> Create </a>
 </div>
 <ul>
-
     <?php
     session_start();
     if (!empty($_SESSION['message'])) {

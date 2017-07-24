@@ -11,8 +11,17 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="public/bootstrap/js/bootstrap.js"></script>
+	<script src="public/js/tuananh.js"></script>
 </head>
 <body>
+<?php
+
+//echo '<pre>';
+//print_r($Departments);
+//echo '</pre>';
+
+?>
+
 
 <div class="container">
 	<header>
@@ -35,7 +44,6 @@
                 ?>
 							<li><a class="loginstatus" href="login"> Login </a></li>
                 <?php
-
             }
             ?>
 				</ul>
@@ -49,8 +57,9 @@
 
 		<!-- Begin page content -->
 		<div class="container">
-			<h1>Departments</h1>
-
+			<h2>Employees<a href="createEmployee">
+					<button class="btn btn-primary pull-right btn-create"> Create Employee</button>
+				</a></h2>
 
 			<div class="alert-success">
           <?php
@@ -70,39 +79,47 @@
 				<tr>
 					<th>#</th>
 					<th>Name</th>
-					<th>Office Number</th>
-					<th>Manager</th>
+					<th>Department</th>
+					<th>Job title</th>
+					<th>Email</th>
+					<th>Position</th>
+					<th>Action</th>
 				</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td>1</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
+        <?php
+        $i = 1;
+        foreach ($Employees as $ep) { ?>
 
-				<tr>
-					<td>2</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
+					<tr>
+						<th> <?php echo $i; ?> </th>
+						<th> <?php echo $ep['name']; ?> </th>
+						<th> <?php echo $ep['department_name']; ?> </th>
+						<th> <?php echo $ep['job_title']; ?> </th>
+						<th> <?php echo $ep['email']; ?></th>
+						<th> <?php echo $ep['position']; ?></th>
+						<th>
+							<a href="showEmployee?id=<?php echo $ep['id']; ?>">
+								<button class="btn btn-info"> View</button>
+							</a>
+							<a href="editEmployee?id=<?php echo $ep['id'] ?>">
+								<button class="btn btn-success"> Edit</button>
+							</a>
 
-				<tr>
-					<td>3</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
+							<form method="POST" action="deleteEmployee" accept-charset="UTF-8"
+							      style="display:inline">
+								<input name="_method" type="hidden" value="DELETE">
+								<input type="hidden" name="id" value="<?php echo $ep['id']; ?>">
+								<input class="btn btn-danger" type="submit" value="Delete">
+							</form>
 
+						</th>
+					</tr>
+            <?php
+            $i++;
+        }
+        ?>
 
-				<tr>
-					<td>4</td>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
 
 				</tbody>
 			</table>
